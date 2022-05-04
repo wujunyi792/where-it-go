@@ -24,7 +24,7 @@ func Fail(c *gin.Context, serviceError err.ServiceError) {
 	resp.Clear()
 	resp.Code = serviceError.Code
 	resp.Message = serviceError.Error()
-	c.JSON(serviceError.Code/100, resp)
+	c.JSON(http.StatusOK, resp)
 	c.Abort()
 }
 
@@ -33,6 +33,6 @@ func FailWithCode(c *gin.Context, code int, msg string) {
 	resp.Clear()
 	resp.Message = msg
 	resp.Code = code
-	c.JSON(code/100, resp)
+	c.JSON(http.StatusOK, resp)
 	c.Abort()
 }
