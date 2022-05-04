@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  template-main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template-main
+    #    restart: always
+    volumes:
+      - ./config:/Serve/config
+    ports:
+      - "19080:8080"

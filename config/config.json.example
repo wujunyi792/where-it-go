@@ -1,0 +1,62 @@
+{
+  "MODE": "debug",
+  "ProgramName": "",
+  "AUTHOR": "",
+  "VERSION": "",
+  "Auth": {
+    "Secret": "",
+    "Issuer": ""
+  },
+  "SQL": {
+    "Use": false,
+    "Config": {
+      "TYPE": "",
+      "IP": "",
+      "PORT": "",
+      "USER": "",
+      "PASSWORD": "",
+      "DATABASE": ""
+    }
+  },
+  "REDIS": {
+    "Use": false,
+    "Config": {
+      "IP": "",
+      "PORT": "",
+      "PASSWORD": "",
+      "DB": 0
+    }
+  },
+  "OSS": {
+    "Use": false,
+    "Config": {
+      "AccessKeySecret": "",
+      "AccessKeyId": "",
+      "EndPoint": "",
+      "BucketName": "",
+      "BaseURL": "",
+      "Path": "",
+      "CallbackUrl": "",
+      "ExpireTime": 0
+    }
+  },
+  "Mail": {
+    "Use": false,
+    "Config": {
+      "SMTP": "",
+      "PORT": 0,
+      "ACCOUNT": "",
+      "PASSWORD": ""
+    }
+  },
+  "CMS": {
+    "Use": false,
+    "Config": {
+      "SecretId": "",
+      "SecretKey": "",
+      "AppId": "",
+      "TemplateId": "",
+      "Sign": ""
+    }
+  }
+}
