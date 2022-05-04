@@ -2,13 +2,12 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/wujunyi792/gin-template-new/config"
-	_ "github.com/wujunyi792/gin-template-new/internal/controller/example"
-	_ "github.com/wujunyi792/gin-template-new/internal/corn"
-	"github.com/wujunyi792/gin-template-new/internal/logger"
-	"github.com/wujunyi792/gin-template-new/internal/middleware"
-	"github.com/wujunyi792/gin-template-new/internal/redis"
-	v1 "github.com/wujunyi792/gin-template-new/internal/router/v1"
+	"github.com/wujunyi792/where-it-go/config"
+	_ "github.com/wujunyi792/where-it-go/internal/corn"
+	"github.com/wujunyi792/where-it-go/internal/logger"
+	"github.com/wujunyi792/where-it-go/internal/middleware"
+	"github.com/wujunyi792/where-it-go/internal/redis"
+	v1 "github.com/wujunyi792/where-it-go/internal/router/v1"
 )
 
 var E *gin.Engine

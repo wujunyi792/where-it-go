@@ -3,10 +3,9 @@ package v1
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/wujunyi792/gin-template-new/config"
-	"github.com/wujunyi792/gin-template-new/internal/middleware"
-	"github.com/wujunyi792/gin-template-new/internal/router/v1/fileRouter"
-	"github.com/wujunyi792/gin-template-new/internal/router/v1/websocketRouter"
+	"github.com/wujunyi792/where-it-go/config"
+	"github.com/wujunyi792/where-it-go/internal/middleware"
+	"github.com/wujunyi792/where-it-go/internal/router/v1/websocketRouter"
 )
 
 func MainRouter(e *gin.Engine) {
@@ -28,6 +27,5 @@ func MainRouter(e *gin.Engine) {
 		}
 		middleware.Success(c, data)
 	})
-	fileRouter.InitFileRouter(e)
 	websocketRouter.InitWebSocketRouter(e)
 }

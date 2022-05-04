@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/wujunyi792/gin-template-new/internal/dto/common"
-	"github.com/wujunyi792/gin-template-new/internal/dto/err"
+	"github.com/wujunyi792/where-it-go/internal/dto/common"
+	"github.com/wujunyi792/where-it-go/internal/dto/err"
 	"net/http"
 )
 

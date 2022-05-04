@@ -3,7 +3,7 @@ package middleware
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/wujunyi792/gin-template-new/internal/logger"
+	"github.com/wujunyi792/where-it-go/internal/logger"
 	"time"
 )
 

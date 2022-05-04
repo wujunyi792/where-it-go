@@ -2,7 +2,7 @@ package websocket
 
 import (
 	"fmt"
-	"github.com/wujunyi792/gin-template-new/internal/logger"
+	"github.com/wujunyi792/where-it-go/internal/logger"
 	"log"
 	"net/http"
 	"time"

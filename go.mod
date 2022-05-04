@@ -1,4 +1,4 @@
-module github.com/wujunyi792/gin-template-new
+module github.com/wujunyi792/where-it-go
 
 go 1.17
 
