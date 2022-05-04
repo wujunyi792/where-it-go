@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/wujunyi792/where-it-go/config"
 	"github.com/wujunyi792/where-it-go/internal/middleware"
+	"github.com/wujunyi792/where-it-go/internal/router/v1/traceRouter"
 	"github.com/wujunyi792/where-it-go/internal/router/v1/websocketRouter"
 )
 
@@ -28,4 +29,5 @@ func MainRouter(e *gin.Engine) {
 		middleware.Success(c, data)
 	})
 	websocketRouter.InitWebSocketRouter(e)
+	traceRouter.InitTraceRouter(e)
 }

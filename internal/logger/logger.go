@@ -8,12 +8,12 @@ import (
 )
 
 type debugDefault struct {
-	Debug *log.Logger
+	debug *log.Logger
 }
 
 func (d *debugDefault) Println(v ...interface{}) {
 	if config.GetConfig().MODE == "debug" {
-		d.Debug.Println(v)
+		d.debug.Println(v)
 	}
 }
 
@@ -34,6 +34,6 @@ func init() {
 	Warning = log.New(os.Stdout, "[Warning] ", log.Ldate|log.Ltime|log.Lshortfile)
 	Error = log.New(io.MultiWriter(os.Stderr, errFile), "[Error] ", log.Ldate|log.Ltime|log.Lshortfile)
 	Debug = &debugDefault{
-		Debug: log.New(os.Stdout, "[Debug] ", log.Ldate|log.Ltime|log.Lshortfile),
+		debug: log.New(os.Stdout, "[Debug] ", log.Ldate|log.Ltime|log.Lshortfile),
 	}
 }
