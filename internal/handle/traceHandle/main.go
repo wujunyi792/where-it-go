@@ -30,7 +30,7 @@ func HandleSendSMC(c *gin.Context) {
 		middleware.FailWithCode(c, 40202, err.Error())
 		return
 	}
-	redis.GetRedis().Set(RedisPrefix+phone, traceId, 5*time.Minute)
+	redis.GetRedis().Set(RedisPrefix+phone, traceId, 3*time.Minute)
 	middleware.Success(c, &trace2.ServiceSendCMSResponse{
 		TraceId: traceId,
 		Phone:   phone,

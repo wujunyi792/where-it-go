@@ -1,10 +1,13 @@
 package trace
 
 import (
+	"bytes"
+	"encoding/base64"
 	"errors"
 	"github.com/parnurzeal/gorequest"
 	uuid "github.com/satori/go.uuid"
 	"github.com/wujunyi792/where-it-go/internal/logger"
+	"github.com/wujunyi792/where-it-go/internal/service/oss"
 	"github.com/wujunyi792/where-it-go/pkg/utils/crypto"
 	"strings"
 	"time"
@@ -62,6 +65,9 @@ func GetTrace(phone string, token string, queryId string) (*GetTraceInfoResponse
 	if res.Code != "00" {
 		return nil, errors.New(res.ErrorDesc)
 	}
-	res.Result.Message = "data:image/png;base64," + res.Result.Message
+	imageData, _ := base64.StdEncoding.DecodeString(res.Result.Message)
+	imageReader := bytes.NewReader(imageData)
+	url := oss.UploadFileToOss("a.jpg", imageReader)
+	res.Result.Message = url
 	return &res, nil
 }

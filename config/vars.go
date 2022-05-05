@@ -14,4 +14,15 @@ type GlobalConfig struct {
 			DB       int
 		}
 	}
+	OSS struct {
+		Use    bool
+		Config struct {
+			AccessKeySecret string
+			AccessKeyId     string
+			EndPoint        string
+			BucketName      string
+			BaseURL         string
+			Path            string
+		}
+	}
 }
