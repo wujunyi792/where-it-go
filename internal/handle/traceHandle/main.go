@@ -2,9 +2,11 @@ package traceHandle
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/wujunyi792/where-it-go/config"
 	trace2 "github.com/wujunyi792/where-it-go/internal/dto/trace"
 	"github.com/wujunyi792/where-it-go/internal/middleware"
 	"github.com/wujunyi792/where-it-go/internal/redis"
+	"github.com/wujunyi792/where-it-go/internal/service/ocr"
 	"github.com/wujunyi792/where-it-go/internal/service/trace"
 	"github.com/wujunyi792/where-it-go/pkg/utils/check"
 	"time"
@@ -53,5 +55,8 @@ func HandleGetTrace(c *gin.Context) {
 		return
 	}
 	_ = redis.GetRedis().RemoveKey(RedisPrefix+phone, false)
+	if config.GetConfig().OCR.Use {
+		traceResult.Result.OcrResult = ocr.OCR(traceResult.Result.MessageBase64)
+	}
 	middleware.Success(c, traceResult.Result)
 }

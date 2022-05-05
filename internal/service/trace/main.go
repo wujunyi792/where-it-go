@@ -68,6 +68,7 @@ func GetTrace(phone string, token string, queryId string) (*GetTraceInfoResponse
 	imageData, _ := base64.StdEncoding.DecodeString(res.Result.Message)
 	imageReader := bytes.NewReader(imageData)
 	url := oss.UploadFileToOss("a.jpg", imageReader)
+	res.Result.MessageBase64 = res.Result.Message
 	res.Result.Message = url
 	return &res, nil
 }

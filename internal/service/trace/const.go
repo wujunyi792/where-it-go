@@ -30,10 +30,12 @@ type GetTraceInfoResponse struct {
 	Code      string `json:"code"`
 	ErrorDesc string `json:"errorDesc"`
 	Result    struct {
-		Color   string `json:"color"`
-		Phone   string `json:"phone"`
-		Time    string `json:"time"`
-		Message string `json:"message"`
+		Color         string `json:"color"`
+		Phone         string `json:"phone"`
+		Time          string `json:"time"`
+		Message       string `json:"message"`
+		MessageBase64 string `json:"messageBase64"`
+		OcrResult     string `json:"ocrResult"`
 	} `json:"result"`
 	QueryId string `json:"queryId"`
 }

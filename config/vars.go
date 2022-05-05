@@ -25,4 +25,8 @@ type GlobalConfig struct {
 			Path            string
 		}
 	}
+	OCR struct {
+		Use bool
+		Url string
+	}
 }
