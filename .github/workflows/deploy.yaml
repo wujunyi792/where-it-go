@@ -1,0 +1,23 @@
+name: deploy
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands
+
+        # 使用appleboy/ssh-action@master来执行命令
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SECRET }}
+          script: |
+            cd /www/wwwroot/trace.mjclouds.com/where-it-go
+            git pull
+            docker container rm where-it-go-main -f
+            docker rmi where-it-go_where-it-go-main
+            docker-compose up -d

@@ -30,7 +30,7 @@ func HandleSendSMC(c *gin.Context) {
 		middleware.FailWithCode(c, 40202, err.Error())
 		return
 	}
-	redis.GetRedis().Set(RedisPrefix+phone, traceId, time.Minute)
+	redis.GetRedis().Set(RedisPrefix+phone, traceId, 5*time.Minute)
 	middleware.Success(c, &trace2.ServiceSendCMSResponse{
 		TraceId: traceId,
 		Phone:   phone,
@@ -43,6 +43,7 @@ func HandleGetTrace(c *gin.Context) {
 	traceId, err := redis.GetRedis().Get(RedisPrefix + phone)
 	if err != nil {
 		// TODO 应该一段时间还是能用的，没测过
+		redis.GetRedis().RemoveKey(RedisPrefix+phone, false)
 		middleware.FailWithCode(c, 40203, "验证码已过期或不存在")
 		return
 	}
