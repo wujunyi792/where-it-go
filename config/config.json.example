@@ -1,23 +1,8 @@
 {
-  "MODE": "debug",
-  "ProgramName": "",
+  "MODE": "release",
+  "ProgramName": "行程卡数据接口",
   "AUTHOR": "",
   "VERSION": "",
-  "Auth": {
-    "Secret": "",
-    "Issuer": ""
-  },
-  "SQL": {
-    "Use": false,
-    "Config": {
-      "TYPE": "",
-      "IP": "",
-      "PORT": "",
-      "USER": "",
-      "PASSWORD": "",
-      "DATABASE": ""
-    }
-  },
   "REDIS": {
     "Use": false,
     "Config": {
@@ -35,28 +20,11 @@
       "EndPoint": "",
       "BucketName": "",
       "BaseURL": "",
-      "Path": "",
-      "CallbackUrl": "",
-      "ExpireTime": 0
+      "Path": ""
     }
   },
-  "Mail": {
+  "OCR": {
     "Use": false,
-    "Config": {
-      "SMTP": "",
-      "PORT": 0,
-      "ACCOUNT": "",
-      "PASSWORD": ""
-    }
-  },
-  "CMS": {
-    "Use": false,
-    "Config": {
-      "SecretId": "",
-      "SecretKey": "",
-      "AppId": "",
-      "TemplateId": "",
-      "Sign": ""
-    }
+    "Url": ""
   }
 }
