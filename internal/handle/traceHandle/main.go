@@ -3,9 +3,9 @@ package traceHandle
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/wujunyi792/where-it-go/config"
+	"github.com/wujunyi792/where-it-go/internal/cache"
 	trace2 "github.com/wujunyi792/where-it-go/internal/dto/trace"
 	"github.com/wujunyi792/where-it-go/internal/middleware"
-	"github.com/wujunyi792/where-it-go/internal/redis"
 	"github.com/wujunyi792/where-it-go/internal/service/ocr"
 	"github.com/wujunyi792/where-it-go/internal/service/trace"
 	"github.com/wujunyi792/where-it-go/pkg/utils/check"
@@ -18,7 +18,7 @@ var (
 
 func HandleSendSMC(c *gin.Context) {
 	phone := c.Param("phone")
-	_, err := redis.GetRedis().Get(RedisPrefix + phone)
+	_, err := cache.GetCache().Get(RedisPrefix + phone)
 	if err == nil {
 		middleware.FailWithCode(c, 40201, "查询过于频繁，请稍后再试")
 		return
@@ -32,7 +32,7 @@ func HandleSendSMC(c *gin.Context) {
 		middleware.FailWithCode(c, 40202, err.Error())
 		return
 	}
-	redis.GetRedis().Set(RedisPrefix+phone, traceId, 3*time.Minute)
+	cache.GetCache().Set(RedisPrefix+phone, traceId, 3*time.Minute)
 	middleware.Success(c, &trace2.ServiceSendCMSResponse{
 		TraceId: traceId,
 		Phone:   phone,
@@ -42,10 +42,10 @@ func HandleSendSMC(c *gin.Context) {
 func HandleGetTrace(c *gin.Context) {
 	phone := c.Param("phone")
 	token := c.Param("token")
-	traceId, err := redis.GetRedis().Get(RedisPrefix + phone)
+	traceId, err := cache.GetCache().Get(RedisPrefix + phone)
 	if err != nil {
 		// TODO 应该一段时间还是能用的，没测过
-		redis.GetRedis().RemoveKey(RedisPrefix+phone, false)
+		cache.GetCache().RemoveKey(RedisPrefix+phone, false)
 		middleware.FailWithCode(c, 40203, "验证码已过期或不存在")
 		return
 	}
@@ -54,7 +54,7 @@ func HandleGetTrace(c *gin.Context) {
 		middleware.FailWithCode(c, 40204, err.Error())
 		return
 	}
-	_ = redis.GetRedis().RemoveKey(RedisPrefix+phone, false)
+	_ = cache.GetCache().RemoveKey(RedisPrefix+phone, false)
 	if config.GetConfig().OCR.Use {
 		traceResult.Result.OcrResult = ocr.OCR(traceResult.Result.MessageBase64)
 	}

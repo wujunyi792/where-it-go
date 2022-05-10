@@ -10,9 +10,9 @@ import (
 )
 
 func init() {
-	if !config.GetConfig().OSS.Use {
-		panic("OSS not open, please check config")
-	}
+	//if !config.GetConfig().OSS.Use {
+	//	panic("OSS not open, please check config")
+	//}
 	InitOSS()
 	logger.Info.Println("OSS init SUCCESS ")
 }
