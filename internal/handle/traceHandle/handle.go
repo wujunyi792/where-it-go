@@ -18,6 +18,7 @@ var (
 
 func HandleSendSMC(c *gin.Context) {
 	phone := c.Param("phone")
+	// 检查是否最近查询过
 	_, err := cache.GetCache().Get(RedisPrefix + phone)
 	if err == nil {
 		middleware.FailWithCode(c, 40201, "查询过于频繁，请稍后再试")
@@ -27,6 +28,8 @@ func HandleSendSMC(c *gin.Context) {
 		middleware.FailWithCode(c, 40205, "手机号格式不正确")
 		return
 	}
+
+	// 发送短信验证码
 	traceId, err := trace.SendCmsCode(phone)
 	if err != nil {
 		middleware.FailWithCode(c, 40202, err.Error())
