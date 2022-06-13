@@ -32,7 +32,6 @@ func GinRequestLog(c *gin.Context) {
 	// 请求IP
 	clientIP := c.ClientIP()
 
-	// 日志格式
 	logger.Info.Println(fmt.Sprintf(
 		"| %3d | %13v | %15s | %s | %s |",
 		statusCode, latencyTime, clientIP, reqMethod, reqUri),
