@@ -8,30 +8,31 @@ import (
 )
 
 func GinRequestLog(c *gin.Context) {
-	// 开始时间
+	// start time
 	startTime := time.Now()
 
-	// 处理请求
+	// next
 	c.Next()
 
-	// 结束时间
+	// end time
 	endTime := time.Now()
 
-	// 执行时间
+	// execute time
 	latencyTime := endTime.Sub(startTime)
 
-	// 请求方式
+	// request method
 	reqMethod := c.Request.Method
 
-	// 请求路由
+	// request uri
 	reqUri := c.Request.RequestURI
 
-	// 状态码
+	// status code
 	statusCode := c.Writer.Status()
 
-	// 请求IP
+	// request ip
 	clientIP := c.ClientIP()
 
+	// write log
 	logger.Info.Println(fmt.Sprintf(
 		"| %3d | %13v | %15s | %s | %s |",
 		statusCode, latencyTime, clientIP, reqMethod, reqUri),
